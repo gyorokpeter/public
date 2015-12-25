@@ -1,3 +1,212 @@
+//25
+{inp:"J"$((" "vs x)16 18)except\:",.";{[row;col]n:(1+sum til col)+sum (col-1)+til row;{(x*252533)mod 33554393}/[n-1;20151125]}. inp}
+//24
+{inp:"J"$"\n"vs x;
+    goal:sum[inp] div 3;
+    c:0;found:0b;
+    while[not found;
+        c+:1;
+        subsets:{[csum;maxsum;maxn;x]
+            $[(csum>maxsum);
+                ();
+              (0=maxn) or (0=count x);
+                enlist`long$();
+              raze(
+                x[0],/:.z.s[csum+x[0];maxsum;maxn-1;1_x];
+                .z.s[csum;maxsum;maxn;1_x]
+              )
+            ]}[0;goal;c;inp];
+        subsets:subsets where goal=sum each subsets;
+        if[0<count subsets;
+            found:1b;
+        ];
+    ];
+    min prd each subsets}
+{inp:"J"$"\n"vs x;
+    goal:sum[inp] div 4;
+    c:0;found:0b;
+    while[not found;
+        c+:1;
+        subsets:{[csum;maxsum;maxn;x]
+            $[(csum>maxsum);
+                ();
+              (0=maxn) or (0=count x);
+                enlist`long$();
+              raze(
+                x[0],/:.z.s[csum+x[0];maxsum;maxn-1;1_x];
+                .z.s[csum;maxsum;maxn;1_x]
+              )
+            ]}[0;goal;c;inp];
+        subsets:subsets where goal=sum each subsets;
+        if[0<count subsets;
+            found:1b;
+        ];
+    ];
+    min prd each subsets}
+//23
+{inp:"\n"vs x;
+    ip:0;
+    r:`a`b!0 0;
+    while[ip within (0;count[inp]-1);
+        cmd:" "vs inp[ip];
+        op:`$cmd[0];
+        $[op=`hlf;
+            [r[`$cmd 1]:r[`$cmd 1]div 2;ip+:1];
+          op=`tpl;
+            [r[`$cmd 1]*:3;ip+:1];
+          op=`inc;
+            [r[`$cmd 1]+:1;ip+:1];
+          op=`jmp;
+            ip+:"J"$cmd 1;
+          op=`jie;
+            ip+:$[0=r[`$-1_cmd 1]mod 2; "J"$cmd 2;1];
+          op=`jio;
+            ip+:$[1=r[`$-1_cmd 1]; "J"$cmd 2;1];
+        '"unknown instruction ",cmd[0]
+        ];
+    ];
+    r`b}
+{inp:"\n"vs x;
+    ip:0;
+    r:`a`b!1 0;
+    while[ip within (0;count[inp]-1);
+        cmd:" "vs inp[ip];
+        op:`$cmd[0];
+        $[op=`hlf;
+            [r[`$cmd 1]:r[`$cmd 1]div 2;ip+:1];
+          op=`tpl;
+            [r[`$cmd 1]*:3;ip+:1];
+          op=`inc;
+            [r[`$cmd 1]+:1;ip+:1];
+          op=`jmp;
+            ip+:"J"$cmd 1;
+          op=`jie;
+            ip+:$[0=r[`$-1_cmd 1]mod 2; "J"$cmd 2;1];
+          op=`jio;
+            ip+:$[1=r[`$-1_cmd 1]; "J"$cmd 2;1];
+        '"unknown instruction ",cmd[0]
+        ];
+    ];
+    r`b}
+//22
+{inp:" "vs/:"\n"vs x;
+    bhp:"J"$inp[0;2];
+    bdmg:"J"$inp[1;1];
+    queue:enlist`hp`mp`bhp`totalmp`shield`poison`recharge`bdmg!(50;500;bhp;0;0;0;0;bdmg);
+    visited:0#queue;
+    comefrom::([]old:();new:();spell:());
+    expand:{
+        if[0<x`recharge; x[`mp]+:101; x[`recharge]-:1];
+        if[0<x`shield; x[`shield]-:1];
+        if[0<x`poison; x[`bhp]-:3; x[`poison]-:1];
+        if[x[`bhp]=0; x[`bhp:0]; :enlist x,enlist[`spell]!enlist`];
+        res:enlist (x+`mp`bhp`totalmp!-53 -4 53),enlist[`spell]!enlist`missile;
+        res,:enlist (x+`hp`mp`bhp`totalmp!2 -73 -2 73),enlist[`spell]!enlist`drain;
+        if[0=x`shield; res,:enlist (x+`mp`totalmp!-113 113),`shield`spell!(6;`shield)];
+        if[0=x`poison; res,:enlist (x+`mp`totalmp!-173 173),`poison`spell!(6;`poison)];
+        if[0=x`recharge; res,:enlist (x+`mp`totalmp!-229 229),`recharge`spell!(5;`recharge)];
+        res:delete from res where mp<0;
+        res:update bhp:bhp-3, poison:poison-1 from res where poison>0;
+        res:update shield:shield-1 from res where shield>0;
+        res:update mp:mp+101, recharge:recharge-1 from res where recharge>0;
+        res:update bhp:0|bhp from res;
+        res:update hp:hp-1|(bdmg-?[shield>0;7;0]) from res where bhp>0;
+        res:delete from res where hp<=0;
+    res};
+    while[0<count queue;
+        ind:exec first i from queue where totalmp=min totalmp;
+        nxt:queue[ind];
+        queue:delete from queue where i=ind;
+        if[0>=nxt`bhp;
+            spell:`$();
+            oldind:visited?nxt;
+            while[oldind<>-1; row:first select from comefrom where new=oldind; spell:row[`spell],spell; oldind:row[`old]];
+            show spell;
+        :nxt`totalmp];
+        newrows:distinct expand[nxt];
+        newrowsNS:delete spell from newrows;
+        nrind:where not newrowsNS in visited;
+        visited,:newrowsNS nrind;
+        queue,:newrowsNS nrind;
+        oldind:$[nxt in visited; visited?nxt; -1];
+        comefrom,:([]old:oldind; new:visited?newrowsNS nrind;spell:newrows[nrind;`spell]);
+    ];
+    '"impossible";
+    }
+{inp:" "vs/:"\n"vs x;
+    bhp:"J"$inp[0;2];
+    bdmg:"J"$inp[1;1];
+    queue:enlist`hp`mp`bhp`totalmp`shield`poison`recharge`bdmg!(50;500;bhp;0;0;0;0;bdmg);
+    visited:0#queue;
+    comefrom::([]old:();new:();spell:());
+    expand:{
+        x[`hp]-:1;
+        if[0<x`recharge; x[`mp]+:101; x[`recharge]-:1];
+        if[0<x`shield; x[`shield]-:1];
+        if[0<x`poison; x[`bhp]-:3; x[`poison]-:1];
+        if[x[`bhp]=0; x[`bhp:0]; :enlist x,enlist[`spell]!enlist`];
+        res:enlist (x+`mp`bhp`totalmp!-53 -4 53),enlist[`spell]!enlist`missile;
+        res,:enlist (x+`hp`mp`bhp`totalmp!2 -73 -2 73),enlist[`spell]!enlist`drain;
+        if[0=x`shield; res,:enlist (x+`mp`totalmp!-113 113),`shield`spell!(6;`shield)];
+        if[0=x`poison; res,:enlist (x+`mp`totalmp!-173 173),`poison`spell!(6;`poison)];
+        if[0=x`recharge; res,:enlist (x+`mp`totalmp!-229 229),`recharge`spell!(5;`recharge)];
+        res:delete from res where mp<0;
+        res:update bhp:bhp-3, poison:poison-1 from res where poison>0;
+        res:update shield:shield-1 from res where shield>0;
+        res:update mp:mp+101, recharge:recharge-1 from res where recharge>0;
+        res:update bhp:0|bhp from res;
+        res:update hp:hp-1|(bdmg-?[shield>0;7;0]) from res where bhp>0;
+        res:delete from res where hp<=0;
+    res};
+    while[0<count queue;
+        ind:exec first i from queue where totalmp=min totalmp;
+        nxt:queue[ind];
+        queue:delete from queue where i=ind;
+        if[0>=nxt`bhp;
+            spell:`$();
+            oldind:visited?nxt;
+            while[oldind<>-1; row:first select from comefrom where new=oldind; spell:row[`spell],spell; oldind:row[`old]];
+            show spell;
+        :nxt`totalmp];
+        newrows:distinct expand[nxt];
+        newrowsNS:delete spell from newrows;
+        nrind:where not newrowsNS in visited;
+        visited,:newrowsNS nrind;
+        queue,:newrowsNS nrind;
+        oldind:$[nxt in visited; visited?nxt; -1];
+        comefrom,:([]old:oldind; new:visited?newrowsNS nrind;spell:newrows[nrind;`spell]);
+    ];
+    '"impossible";
+    }
+//21
+{inp:" "vs/:"\n"vs x;
+    bhp:"J"$inp[0;2];
+    bdmg:"J"$inp[1;1];
+    barm:"J"$inp[2;1];
+    wp:([]cost:8 10 25 40 74;dmg:4 5 6 7 8; arm:0);
+    arm:([]cost:13 31 53 75 102;dmg:0;arm:1 2 3 4 5);
+    ring:([]cost:25 50 100 20 40 80;dmg:1 2 3 0 0 0;arm:0 0 0 1 2 3);
+    wa:raze(enlist each wp),/:\:(enlist[()],enlist each arm);
+    wag:raze wa,/:\:enlist[()],(enlist each ring),ring distinct asc each raze til[count ring],/:'til[count ring] except/:til count ring;
+    stat:sum each wag;
+    stat:update win:(ceiling bhp%(1|dmg-barm))<=ceiling 100%1|bdmg-arm from stat;
+    exec min cost from stat where win}
+{inp:" "vs/:"\n"vs x;
+    bhp:"J"$inp[0;2];
+    bdmg:"J"$inp[1;1];
+    barm:"J"$inp[2;1];
+    wp:([]cost:8 10 25 40 74;dmg:4 5 6 7 8; arm:0);
+    arm:([]cost:13 31 53 75 102;dmg:0;arm:1 2 3 4 5);
+    ring:([]cost:25 50 100 20 40 80;dmg:1 2 3 0 0 0;arm:0 0 0 1 2 3);
+    wa:raze(enlist each wp),/:\:(enlist[()],enlist each arm);
+    wag:raze wa,/:\:enlist[()],(enlist each ring),ring distinct asc each raze til[count ring],/:'til[count ring] except/:til count ring;
+    stat:sum each wag;
+    stat:update win:(ceiling bhp%(1|dmg-barm))<=ceiling 100%1|bdmg-arm from stat;
+    exec max cost from stat where not win}
+//20
+{MAX:x div 10;l:0,MAX#10;n:1;while[n<=MAX;n+:1;l[n*1+til (MAX div n)]+:n*10;];first where l>=x}
+{MAX:x div 10;l:0,MAX#11;n:1;while[n<=MAX;n+:1;l[n*1+{min[count[x],50]#x}til (MAX div n)]+:n*11;];first where l>=x}
+34000000
 //19
 {inp:"\n"vs x;rep:(" "vs/:-2_inp)[;0 2];orig:last inp;rps:orig ss/:rep[;0];count distinct raze{[orig;pos;old;new](pos#\:orig),'new,/:(pos+count[old]) _\:orig}[orig]'[rps;rep[;0];rep[;1]]}
 {inp:"\n"vs x;rep:flip `old`new!flip(" "vs/:-2_inp)[;0 2];
