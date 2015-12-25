@@ -308,5 +308,5 @@
 {sum{a:"J"$"x"vs x;a0:a[0]*a[1];a1:a[1]*a[2];a2:a[0]*a[2]; min[(a0;a1;a2)]+2*a0+a1+a2}each "\n"vs x}
 {sum{a:"J"$"x"vs x;prd[a]+2*min[(a[0]+a[1];a[0]+a[2];a[1]+a[2])]}each "\n"vs x}
 //1
-sum("()"!1 -1)
+{sum("()"!1 -1)x}
 {1+(sums("()"!1 -1)x)?-1}
