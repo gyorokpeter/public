@@ -1,0 +1,50 @@
+When you complete enough days, some chips may appear on the circuit diagram that represents the 2017 advent calendar. These are the ones I found:
+
+Name        Reference to
+
+1.21 GW     Back to the Future
+12v
+31415926    Pi (number)
+328P0936
+512 PB
+5A22
+6x9= 42     Answer to the Ultimate Question of Life, the Universe, and Everything
+8088        Intel 8088
+9001 ohm
+ALU         Arithmetic and Logic Unit
+ADvTC0DE    Advent of Code
+AoC 2017    Advent of Code 2017
+BCM2837     (Broadcom) Raspberry Pi
+de bug      Debugging
+DECRYPTR    Decryptor
+DSP         Digital signal processing
+ENCOMMCP    (ENCOM Master Control Program) Tron
+ENCABLTR    Encabulator
+ENCRYPTR    Encryptor
+ETHERNET    Ethernet
+FLUXCPTR    (Flux Capacitor) Back to the Future
+GP104400
+HALFADDR    Half adder
+HCF         Halt and catch fire
+hi mom      Some factory worker having fun putting personal messages on their products
+HO HO       Santa Claus
+i386        Intel 386
+IEEE 754    IEEE Standard for Floating-Point Arithmetic
+INTERNET    Internet
+MAGICSMK    Magic smoke
+NANDGATE    NAND gate
+PR2A 03G
+PR2C02-G
+PTCLACCL    Particle accelerator
+RECTANGL    Rectangle
+ROT 13      Rotate-by-13 cipher
+SPC 700
+SRAM        Static random-access memory
+test        Testing
+v17
+VR4300      NEC VR4300 CPU
+while(1)    Infinite loop in C(++) and similar languages
+wifi        Wi-Fi (wireless network protocol)
+WOPR        (War Operation Plan Response) WarGames
+x64         Intel/AMD 64-bit architecture
+xor         Exclusive or
