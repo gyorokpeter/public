@@ -42,6 +42,8 @@ You don't have to spend half of the time looking up the definition of the myriad
 Fewer but more versatile functions means fewer lookups in the reference docs, which translates to more time spent on writing code. However, just reading the Q reference and experimenting with all of those functions and operators is a fun activity in itself.
 
 # Q sadness
+There are arbitrary limits on functions, like the number of arguments, local variables, constants, references to global variables and the amount of code in a branch. These can be worked around but this only adds a risk of introducing bugs and making code harder to follow.
+
 No bitwise operators (not, and, or, xor, shl, shr). They can be simulated using the "split to boolean list" operator, calling the logical operators on that, and converting the result back to integer. But this has performance impact.
 
 No hash table and binary tree/heap. Once again these can be simulated but more slowly. There is a way to achieve constant/logarithmic lookup on a list or table that has a specific property, but there is no way to insert into them with the same efficienty.

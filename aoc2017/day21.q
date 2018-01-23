@@ -1,33 +1,19 @@
-d22p1:{
-    map:"#"=trim each "\n"vs x;
-    mpdt:{[mpdt]
-        if[mpdt[1;0]=-1; mpdt[1;0]:0; mpdt[0]:(enlist count[first mpdt[0]]#0b),mpdt[0]];
-        if[mpdt[1;1]=-1; mpdt[1;1]:0; mpdt[0]:0b,/:mpdt[0]];
-        if[mpdt[1;0]>=count mpdt[0]; mpdt[0]:mpdt[0],(enlist count[first mpdt[0]]#0b)];
-        if[mpdt[1;1]>=count first mpdt[0]; mpdt[0]:mpdt[0],\:0b];
-        mpdt[2]:(mpdt[2]+-1+2*mpdt[0]. mpdt[1])mod 4;
-        mpdt[0;mpdt[1;0];mpdt[1;1]]:not mpdt[0;mpdt[1;0];mpdt[1;1]];
-        mpdt[3]+:mpdt[0;mpdt[1;0];mpdt[1;1]];
-        mpdt[1]+:(-1 0;0 1;1 0;0 -1)mpdt 2;
-        mpdt
-    }/[10000;(map;2#count[map]div 2;0;0)];
-    mpdt 3};
+.d21.break:{[pattern;size]
+    blocks:flip each size cut/:/:size cut pattern;
+    blocks};
 
-d22p1 "..#\n#..\n...";  //5587
+.d21.advance:{[rule;pattern]
+    blocks:.d21.break[pattern;$[0=count[pattern] mod 2;2;3]];
+    pattern:raze raze each/:flip each rule blocks;
+    pattern};
 
-d22p2:{
-    map:trim each "\n"vs x;
-    mpdt:{[mpdt]
-        if[mpdt[1;0]=-1; mpdt[1;0]:0; mpdt[0]:(enlist count[first mpdt[0]]#"."),mpdt[0]];
-        if[mpdt[1;1]=-1; mpdt[1;1]:0; mpdt[0]:".",/:mpdt[0]];
-        if[mpdt[1;0]>=count mpdt[0]; mpdt[0]:mpdt[0],(enlist count[first mpdt[0]]#".")];
-        if[mpdt[1;1]>=count first mpdt[0]; mpdt[0]:mpdt[0],\:"."];
-        mpdt[2]:(mpdt[2]+(".W#F"!-1 0 1 2)mpdt[0]. mpdt[1])mod 4;
-        mpdt[0;mpdt[1;0];mpdt[1;1]]:(".W#F"!"W#F.")mpdt[0;mpdt[1;0];mpdt[1;1]];
-        mpdt[3]+:"#"=mpdt[0;mpdt[1;0];mpdt[1;1]];
-        mpdt[1]+:(-1 0;0 1;1 0;0 -1)mpdt 2;
-        mpdt
-    }/[10000000;(map;2#count[map]div 2;0;0)];
-    mpdt 3};
+.d21.rotate:{[ruleline]
+    k:ruleline[0]; v:ruleline[1]; fk:flip k; rk:reverse k; rfk:reverse fk;
+    (k;rk;reverse each k;reverse each rk;fk;rfk;reverse each fk;reverse each rfk)(;)\:v};
 
-d22p2 "..#\n#..\n..."  //2511944
+d21p1:{[x;y]
+    pattern:(".#.";"..#";"###");
+    rawrule:"/"vs/:/:" => "vs/:trim each "\n"vs x;
+    rule:{x[;0]!x[;1]}distinct rawrule,raze .d21.rotate each rawrule;
+    pattern:.d21.advance[rule]/[y;pattern];
+    sum sum pattern="#"};
