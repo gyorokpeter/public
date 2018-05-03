@@ -7,6 +7,8 @@ Q is a programming language, and it's the best one I currently know, which I wil
 
 The Q interpreter is owned by Kx Systems.
 
+I recommend watching this playlist: https://www.youtube.com/playlist?list=PLypX5sYuDqvrwBD2EMWadIMiTqJZmVsqm
+
 ## Result: here and now
 
 This is one of the most important advantages of Q, although some languages like JavaScript and Python also have it. My experience is that developing code and productionizing code are two distinct activities, with the latter also including such trivial aspects as making sure that the code makes a coherent function (e.g. no misnaming variables between lines), it can get its input from somewhere, and it's in a file at all. With traditional languages like C++ you have to blend these two activities together in the sense that by the time you are done with the development, you will have spent most of the time on the productionizing even if you won't use the code at all.
