@@ -7,7 +7,11 @@ Q is a programming language, and it's the best one I currently know, which I wil
 
 The Q interpreter is owned by Kx Systems.
 
-I recommend watching this playlist: https://www.youtube.com/playlist?list=PLypX5sYuDqvrwBD2EMWadIMiTqJZmVsqm
+Resources:
+
+* Official documentation: http://code.kx.com/
+* Playlist with an overview of Q features by Jeff Borror (author of Q for Mortals): https://www.youtube.com/playlist?list=PLypX5sYuDqvrwBD2EMWadIMiTqJZmVsqm
+* If you know Python, check this out (and read it in the opposite direction): https://github.com/BodonFerenc/Python-For-Q-Developers/wiki
 
 ## Result: here and now
 
