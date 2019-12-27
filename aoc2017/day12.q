@@ -35,19 +35,12 @@ The input is parsed into a dictionary with the left side of the "<->" as the key
 The latter requires removing the commas between the numbers. I prefer using trim to allow indenting the input lines.
 q)x:"0 <-> 2\n1 <-> 1\n2 <-> 0, 3, 4\n3 <-> 2, 4\n4 <-> 2, 3, 6\n5 <-> 6\n6 <-> 4, 5"
 q)trim each "\n"vs x
-trim each "\n"vs x
 "0 <-> 2"
 "1 <-> 1"
 "2 <-> 0, 3, 4"
 "3 <-> 2, 4"
 "4 <-> 2, 3, 6"
 "5 <-> 6"0| ,2
-1| ,1
-2| 0 3 4
-3| 2 4
-4| 2 3 6
-5| ,6
-6| 4 5
 "6 <-> 4, 5"
 q)" <-> "vs/:trim each "\n"vs x
 ,"0" ,"2"
