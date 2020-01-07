@@ -1,3 +1,4 @@
+/
 d23p1:{
     reg:(`char$(`int$"a")+til 8)!8#0;
     ip:0;
@@ -50,6 +51,7 @@ d23p1 "set b 79
     jnz 1 3
     sub b -17
     jnz 1 -23"  //5929
+\
 
 d23p2:{
     startval:100000+100*"J"$last" "vs first"\n"vs x;
@@ -94,3 +96,25 @@ d23p2 "set b 79
     jnz 1 3
     sub b -17
     jnz 1 -23"  //907
+
+{
+    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+    if[not `duet in key`;
+        system"l ",path,"/arch1.q";
+    ];
+    }[];
+
+d23p1:{.arch1.getMulCount .arch1.run .arch1.new[x]};
+
+//d23p1 "set b 79\nset c b\njnz a 2\njnz 1 5\nmul b 100\nsub b -100000\nset c b\nsub c -17000\nset f 1\nset d 2\nset e 2\nset g d\nmul g e\nsub g b\njnz g 2\nset f 0\nsub e -1\nset g e\nsub g b\njnz g -8\nsub d -1\nset g d\nsub g b\njnz g -13\njnz f 2\nsub h -1\nset g b\nsub g c\njnz g 2\njnz 1 3\nsub b -17\njnz 1 -23"
+
+/
+OVERVIEW:
+
+Part 1 is straightforward VM simulation.
+In the GenArch version I had to include a special "MUL counter" in the state and a
+function to retrieve it just because that's what the challenge asks for.
+
+The VM is not used for part 2. It is meant to be an optimization challenge but it
+is just as simple to reverse engineer so I'm making the whitebox solution the
+official one.

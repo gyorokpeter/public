@@ -1,3 +1,4 @@
+/
 .d25.v:{[reg;val]if[null v:"J"$val;v:reg[`$val]];v};
 .d25.tgl:{(("cpy";"inc";"dec";"jnz";"tgl";"out")!("jnz";"dec";"inc";"cpy";"inc";"inc"))x};
 
@@ -91,3 +92,38 @@ d25p1:{[x]
 d25p1dirtycheater:{2730-prd"J"$(" "vs/:"\n"vs x)[1 2;1]};
 
 d25p1"cpy a d\ncpy 9 c\ncpy 282 b\ninc d\ndec b\njnz b -2\ndec c\njnz c -5\ncpy d a\njnz 0 0\ncpy a b\ncpy 0 a\ncpy 2 c\njnz b 2\njnz 1 6\ndec b\ndec c\njnz c -4\ninc a\njnz 1 -7\ncpy 2 b\njnz c 2\njnz 1 4\ndec b\ndec c\njnz 1 -4\njnz 0 0\nout b\njnz a -19\njnz 1 -21"
+\
+
+{
+    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+    if[not `assembunny in key`;
+        system"l ",path,"/assembunny.q";
+    ];
+    }[];
+
+d25:{
+    st:.assembunny.new x;
+    a:0;
+    run:1b;
+    while[run;
+        out:.assembunny.getOutput .assembunny.runD[;1b;enlist 1+first where`out=st[2;;0];0b]/[36;.assembunny.editRegister[st;`a;a]];
+        a+:run:not (36#0 1)~out;
+    ];
+    a};
+
+//d25"cpy a d\ncpy 9 c\ncpy 282 b\ninc d\ndec b\njnz b -2\ndec c\njnz c -5\ncpy d a\njnz 0 0\ncpy a b\ncpy 0 a\ncpy 2 c\njnz b 2\njnz 1 6\ndec b\ndec c\njnz c -4\ninc a\njnz 1 -7\ncpy 2 b\njnz c 2\njnz 1 4\ndec b\ndec c\njnz 1 -4\njnz 0 0\nout b\njnz a -19\njnz 1 -21"
+
+/
+OVERVIEW:
+
+Compared to day 23 this version of the assembunny VM adds a division optimization.
+
+The assembunny program adds a hardcoded constant to the initial value of register a
+and outputs the resulting number a bit by bit from least to most significant. Therefore
+the goal is to find a number that makes the resulting bit pattern ...10101010.
+
+The genarch solution abuses the API a bit by setting a breakpoint after the out
+instruction and running the VM in debug mode. This is necessary because otherwise
+the program would run in an infinite loop. In the pre-genarch version I could simply
+add a stop condition inside the main loop of the VM to say terminate after 36 bytes
+have been output, which wouldn't look good on the genericized version.

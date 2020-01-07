@@ -1,13 +1,13 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
 d21p1:{
-    a:"J"$","vs x;
-    a:intcode[a;()];
+    a:.intcode.new x;
+    a:.intcode.run[a];
     -1`char$last a;
-    a:intcode[a;{-1 x;`long$x}"\n"sv(
+    a:.intcode.getOutput .intcode.runI[a;{-1 x;`long$x}"\n"sv(
         "NOT C J";
         "AND D J";
         "NOT A T";
@@ -16,10 +16,10 @@ d21p1:{
     -1`char$a;
     last a};
 d21p2:{
-    a:"J"$","vs x;
-    a:intcode[a;()];
+    a:.intcode.new x;
+    a:.intcode.run[a];
     -1`char$last a;
-    a:intcode[a;{-1 x;`long$x}"\n"sv(
+    a:.intcode.getOutput .intcode.runI[a;{-1 x;`long$x}"\n"sv(
         "OR A J";
         "AND B J";
         "AND C J";

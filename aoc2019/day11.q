@@ -1,7 +1,7 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
 ocr:enlist[""]!enlist" ";
 ocr[" **  *  * *  * **** *  * *  * "]:"A";
@@ -21,16 +21,16 @@ ocr["*   **   * * *   *    *    *  "]:"Y";
 ocr["****    *   *   *   *    **** "]:"Z";
 
 d11:{[x;st]
-    a:"J"$","vs x;
+    a:.intcode.new x;
     grid:enlist enlist st;
     cursor:0 0;
     dir:0;
     run:1b;
     path:();
     while[run;
-        a:intcode[a;enlist grid . cursor];
+        a:.intcode.run[.intcode.addInput[a;enlist grid . cursor]];
         ins:last a;
-        run:first[a]~`pause;
+        run:.intcode.needsInput[a];
         if[run;
             path,:enlist cursor;
             grid:.[grid;cursor;:;first ins];

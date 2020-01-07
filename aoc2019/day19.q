@@ -1,17 +1,17 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
-d19p1:{a:"J"$","vs x;
-    r:intcode[a;]each raze {x,\:/:x}til 50;
+d19p1:{a:.intcode.new x;
+    r:.intcode.getOutput each .intcode.runI[a;]each raze {x,\:/:x}til 50;
     -1 " #"grid:50 cut raze r;
     sum sum grid};
 
 d19p2:{[sqsz;x]
-    a:"J"$","vs x;
+    a:.intcode.new x;
     size:10;
-    grid:size cut raze intcode[a;]each raze {x,\:/:x}til size;
+    grid:size cut raze .intcode.getOutput each .intcode.runI[a;]each raze {x,\:/:x}til size;
     minx:first where last grid;
     maxx:last where last grid;
     minPos:(minx;size-1);
@@ -20,12 +20,12 @@ d19p2:{[sqsz;x]
     maxxs:((sqsz-1)#0), maxx;
     while[run;
         minPos+:0 1;
-        r:last intcode[a;minPos];
-        while[not r; minPos+:1 0;r:last intcode[a;minPos]];
+        r:last .intcode.getOutput .intcode.runI[a;minPos];
+        while[not r; minPos+:1 0;r:last .intcode.getOutput .intcode.runI[a;minPos]];
         maxPos+:0 1;
-        r:last intcode[a;maxPos];
-        while[not r; maxPos+:1 0;r:last intcode[a;maxPos]];
-        while[r; maxPos+:1 0;r:last intcode[a;maxPos]];
+        r:last .intcode.getOutput .intcode.runI[a;maxPos];
+        while[not r; maxPos+:1 0;r:last .intcode.getOutput .intcode.runI[a;maxPos]];
+        while[r; maxPos+:1 0;r:last .intcode.getOutput .intcode.runI[a;maxPos]];
         maxPos-:1 0;
         maxxs:1_maxxs,first maxPos;
         maxsq:1+first[maxxs]-first[minPos];

@@ -1,7 +1,7 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
 .d15.findDest:{[grid;cursor;target;rettype]
     queue:enlist cursor;
@@ -32,8 +32,9 @@
         if[run;
             dir:1+(-1 0;1 0;0 -1;0 1)?delta:dest[0]-cursor;
             dest:1_dest;
-            a:intcode[a;enlist dir];
-            out:$[run:`pause~first a;last a;a];
+            a:.intcode.runI[a;enlist dir];
+            out:.intcode.getOutput a;
+            run:not .intcode.isTerminated a;
             grid:.[grid;cursor+delta;:;first out];
             if[0<>first out; cursor+:delta];
             if[0=cursor[0]; grid:enlist[(count first grid)#0N],grid;cursor+:1 0;origin+:1 0;dest:dest+\:1 0];
@@ -48,11 +49,11 @@
     (grid;origin)};
 
 d15p1:{
-    a:"J"$","vs x;
+    a:.intcode.new x;
     go:.d15.buildMap[a];
     count .d15.findDest[go 0;go 1;2;0]};
 d15p2:{
-    a:"J"$","vs x;
+    a:.intcode.new x;
     go:.d15.buildMap[a];
     grid:go 0;
     origin:first raze til[count grid],/:'where each grid=2;

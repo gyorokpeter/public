@@ -1,3 +1,4 @@
+/
 .d25.v:{[reg;val]if[null v:"J"$val;v:reg[`$val]];v};
 .d25.tgl:{(("cpy";"inc";"dec";"jnz";"tgl";"out")!("jnz";"dec";"inc";"cpy";"inc";"inc"))x};
 
@@ -85,23 +86,36 @@ d25p1:{[x]
     ins:" "vs/:"\n"vs x;
     d25[ins;`a`b`c`d!0 0 0 0];
     `char$.d25.stdout};
-
 part1:d25p1 `char$read1`:D:/projects/github/public/aoc2016/bonuschallenge.txt;
+\
+
+{
+    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+    if[not `assembunny in key`;
+        system"l ",path,"/assembunny.q";
+    ];
+    .d25.input:`char$read1`$path,"/bonuschallenge.txt";
+    }[];
+
+part1:`char$.assembunny.getOutput .assembunny.run .assembunny.new[.d25.input];
+
+.d25.w:50;
+.d25.h:6;
 
 d8:{
-    s:6 50#0b;
+    s:(.d25.h,.d25.w)#0b;
     ins:("\n"vs x) except enlist"";
     s2:{[s;ins0]
         ci:" "vs ins0; op:first ci;
         $[op~"rect";
             [wh:"x"vs ci[1]; w:"J"$wh 0; h:"J"$wh 1;
-                s or (w>til 50) and\:/: (h>til 6)];
+                s or (w>til .d25.w) and\:/: (h>til .d25.h)];
           op~"rotate";
             [tg:ci 1;coord:"J"$last"="vs ci 2; amt:"J"$ci 4;
                 $[tg~"column";
                     [sa:flip s;sa[coord]:neg[amt] rotate sa[coord];flip sa];
                   tg~"row";
-                    [s[coord]:neg[amt] rotate s[coord];s];
+                    [if[coord<count s;s[coord]:neg[amt] rotate s[coord]];s];
                 '"unknown target: ",tg]
             ];
          '"unkown instruction: ",op

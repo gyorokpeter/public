@@ -1,11 +1,11 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
 d23p1:{
-    a:"J"$","vs x;
-    pcs:intcode[a]each enlist each til 50;
+    a:.intcode.new x;
+    pcs:.intcode.runI[a]each enlist each til 50;
     while[1b;
         msg:`id xasc flip`id`x`y!flip 3 cut raze pcs[;6];
         if[255 in exec id from msg; :exec first y from msg where id=255];
@@ -13,13 +13,13 @@ d23p1:{
         missing:til[50] except exec id from msg2;
         msg2[([]id:missing)]:([]xy:count[missing]#enlist enlist -1);
         msg3:raze each msg2[([]id:til 50);`xy];
-        pcs:intcode'[pcs;msg3];
+        pcs:.intcode.runI'[pcs;msg3];
     ];
     };
 
 d23p2:{
-    a:"J"$","vs x;
-    pcs:intcode[a]each enlist each til 50;
+    a:.intcode.new x;
+    pcs:.intcode.runI[a]each enlist each til 50;
     nat:(::);
     nh:();
     while[1b;
@@ -34,7 +34,7 @@ d23p2:{
             nh,:last nat;
             if[(1<count nh) and 1=count distinct -2#nh; :last nh];
         ];
-        pcs:intcode'[pcs;msg3];
+        pcs:.intcode.runI'[pcs;msg3];
     ];
     };
 

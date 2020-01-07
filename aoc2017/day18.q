@@ -1,3 +1,4 @@
+/
 d18p1:{
     reg:(`char$(`int$"a")+til 26)!26#0;
     ip:0;
@@ -29,6 +30,7 @@ d18p1"set a 1
     jgz a -1
     set a 1
     jgz a -2"   //4
+
 
 .d18.new:{[id]
     res:`reg`ip`inBuf`outBuf`blocked!((`char$(`int$"a")+til 26)!26#0;0;();();0b);
@@ -82,3 +84,46 @@ d18p2"snd 1
     rcv b
     rcv c
     rcv d"  //3
+\
+
+{
+    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+    if[not `duet in key`;
+        system"l ",path,"/duet.q";
+    ];
+    }[];
+
+d18p1:{last .duet.getOutput .duet.run .duet.new[x]};
+d18p2:{
+    st0:.duet.new[x];
+    st1:.duet.editRegister[st0;`p;1];
+    totalOut1:0;
+    run:1b;
+    while[run;
+        st0:.duet.run st0;
+        st1:.duet.run st1;
+        out0:.duet.getOutput st0;
+        out1:.duet.getOutput st1;
+        totalOut1+:count out1;
+        st0:.duet.clearOutput st0;
+        st1:.duet.clearOutput st1;
+        st0:.duet.addInput[st0;out1];
+        st1:.duet.addInput[st1;out0];
+        run:0<count[out0]+count[out1];
+    ];
+    totalOut1};
+
+//d18p1 "set i 31\nset a 1\nmul p 17\njgz p p\nmul a 2\nadd i -1\njgz i -2\nadd a -1\nset i 127\nset p 952\nmul p 8505\nmod p a\nmul p 129749\nadd p 12345\nmod p a\nset b p\nmod b 10000\nsnd b\nadd i -1\njgz i -9\njgz a 3\nrcv b\njgz b -1\nset f 0\nset i 126\nrcv a\nrcv b\nset p a\nmul p -1\nadd p b\njgz p 4\nsnd a\nset a b\njgz 1 3\nsnd b\nset f 1\nadd i -1\njgz i -11\nsnd a\njgz f -16\njgz a -19"
+//d18p2 "set i 31\nset a 1\nmul p 17\njgz p p\nmul a 2\nadd i -1\njgz i -2\nadd a -1\nset i 127\nset p 952\nmul p 8505\nmod p a\nmul p 129749\nadd p 12345\nmod p a\nset b p\nmod b 10000\nsnd b\nadd i -1\njgz i -9\njgz a 3\nrcv b\njgz b -1\nset f 0\nset i 126\nrcv a\nrcv b\nset p a\nmul p -1\nadd p b\njgz p 4\nsnd a\nset a b\njgz 1 3\nsnd b\nset f 1\nadd i -1\njgz i -11\nsnd a\njgz f -16\njgz a -19"
+
+/
+OVERVIEW:
+
+Just the usual VM simulation.
+
+After porting to GenArch, it turns out that for part 1, the usual method of running
+until it blocks for input is OK, then we can just take the last output as the answer.
+No need to use the alleged behavior of the rcv instruction doing nothing with a zero
+argument (at least for my input).
+For part 2, the same convention of blocking when input is needed makes it easy to
+run two instances in "parallel" and pass data between them.

@@ -1,7 +1,7 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
 .d25.parseOutput:{[out]
     if[0h=type out;out:last out];
@@ -33,13 +33,13 @@
     );
 
 .d25.buildMap:{[a]
-    a1:intcode[a;()];
+    a1:.intcode.run[a];
     out:`char$last a1;
     rooms:1!enlist .d25.parseOutput[out],enlist[`state]!enlist a1;
     links:([roomFrom:`$();dir:`$()]roomTo:`$());
     missing:(ungroup select roomFrom:roomName, dir:doors from rooms) except key links;
     while[0<count missing;
-        sts:exec intcode'[rooms[([]roomName:roomFrom);`state];`long$(string[dir],\:"\n")]from missing;
+        sts:exec .intcode.runI'[rooms[([]roomName:roomFrom);`state];`long$(string[dir],\:"\n")]from missing;
         outs:.d25.parseOutput each sts;
         links,:missing!select roomTo:roomName from outs;
         newRooms:select from (update state:sts from outs) where not roomName in exec roomName from rooms;
@@ -77,13 +77,13 @@
     takes:neg[count allItems]#/:0b vs/:til `long$2 xexp count allItems;
     takeItems:allItems where each takes;
     cmdss:"\n"sv/:("take ",/:/:takeItems),\:enlist string[tryDir],"\n";
-    rs:intcode[st] each `long$cmdss;
+    rs:.intcode.runI[st] each `long$cmdss;
     outs:`char${$[0=type x;last x;x]}each rs;
     itemsToPass:first takeItems where not outs like "*Alert!*";
     itemsToPass};
 
 d25:{
-    a:"J"$","vs x;
+    a:.intcode.new x;
     rl:.d25.buildMap[a];
     rooms:rl 0;
     links:rl 1;
@@ -91,12 +91,12 @@ d25:{
     -1"all items: ",", "sv allItems;
     cmds:.d25.getCmds[rooms;links];
     cmdIn:`long$raze cmds,\:"\n";
-    st:intcode[a;cmdIn];
+    st:.intcode.runI[a;cmdIn];
     tryDir:exec first dir from links where roomFrom=`$"Security Checkpoint", roomTo=`$"Pressure-Sensitive Floor";
     itemsToPass:.d25.getItemsToPass[st;allItems;tryDir];
     -1"items to pass: ",", "sv itemsToPass;
     cmdIn2:`long$("\n"sv ("take ",/:itemsToPass),enlist string[tryDir]),"\n";
-    st2:intcode[st;cmdIn2];
+    st2:.intcode.getOutput .intcode.runI[st;cmdIn2];
     if[not 7h=type st2; '"solution failed"];
     password:"J"$first" on the keypad" vs last"get in by typing " vs `char$st2;
     password};
@@ -154,7 +154,7 @@ d25whitebox:{a:"J"$","vs x;
     "loom";         //???
     "manifold";     //A manifold is a theoretical concept, not an actual object.
     "monolith";     //???
-    "mouse";        //Not sure if it's the rodent or the input device (although the latter is more likely.
+    "mouse";        //Not sure if it's the rodent or the input device (although the latter is more likely).
     "mug";          //Mugs of hot chocolate were featured on the 2018 calendar.
     "mutex";        //A programming concept, certainly not something you could pick up.
     "ornament";     //Generic Christmas object, not sure if this is a reference.

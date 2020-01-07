@@ -1,10 +1,10 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
-d17p1:{a:"J"$","vs x;
-    r:("\n"vs`char$intcode[a;()])except enlist"";
+d17p1:{a:.intcode.new x;
+    r:("\n"vs`char$.intcode.getOutput .intcode.run[a])except enlist"";
     -1 r;
     r1:"#"=".",/:-1_/:r;
     r2:"#"=(1_/:r),\:".";
@@ -13,9 +13,9 @@ d17p1:{a:"J"$","vs x;
     cr:all("#"=r;r1;r2;r3;r4);
     sum(*).'raze til[count cr],/:'where each cr};
 
-d17p2:{a:"J"$","vs x;
-    a[0]:2;
-    r:("\n"vs`char$.intcode.out a:intcode[a;()])except enlist"";
+d17p2:{
+    a:.intcode.editMemory[.intcode.new x;0;2];
+    r:("\n"vs`char$.intcode.getOutput a:.intcode.run[a])except enlist"";
     botPos:first raze til[count r],/:'where each r in "^><v";
     botDir:"^>v<"?r . botPos;
     visited:(0#0b)r;
@@ -69,8 +69,8 @@ d17p2:{a:"J"$","vs x;
     pg:ssr[;pa;"A"]ssr[;pb;"B"]ssr[;pc;"C"]","sv path;
     -1 allInput:"\n"sv(pg;pa;pb;pc;enlist"n";"");
     //-1 " "sv string `long$allInput;
-    r:intcode[a;`long$allInput];
-    last r};
+    r:.intcode.runI[a;`long$allInput];
+    last .intcode.getOutput r};
 
 d17p1whitebox:{
     a:"J"$","vs x;

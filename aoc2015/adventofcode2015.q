@@ -44,50 +44,7 @@
     ];
     min prd each subsets}
 //23
-{inp:"\n"vs x;
-    ip:0;
-    r:`a`b!0 0;
-    while[ip within (0;count[inp]-1);
-        cmd:" "vs inp[ip];
-        op:`$cmd[0];
-        $[op=`hlf;
-            [r[`$cmd 1]:r[`$cmd 1]div 2;ip+:1];
-          op=`tpl;
-            [r[`$cmd 1]*:3;ip+:1];
-          op=`inc;
-            [r[`$cmd 1]+:1;ip+:1];
-          op=`jmp;
-            ip+:"J"$cmd 1;
-          op=`jie;
-            ip+:$[0=r[`$-1_cmd 1]mod 2; "J"$cmd 2;1];
-          op=`jio;
-            ip+:$[1=r[`$-1_cmd 1]; "J"$cmd 2;1];
-        '"unknown instruction ",cmd[0]
-        ];
-    ];
-    r`b}
-{inp:"\n"vs x;
-    ip:0;
-    r:`a`b!1 0;
-    while[ip within (0;count[inp]-1);
-        cmd:" "vs inp[ip];
-        op:`$cmd[0];
-        $[op=`hlf;
-            [r[`$cmd 1]:r[`$cmd 1]div 2;ip+:1];
-          op=`tpl;
-            [r[`$cmd 1]*:3;ip+:1];
-          op=`inc;
-            [r[`$cmd 1]+:1;ip+:1];
-          op=`jmp;
-            ip+:"J"$cmd 1;
-          op=`jie;
-            ip+:$[0=r[`$-1_cmd 1]mod 2; "J"$cmd 2;1];
-          op=`jio;
-            ip+:$[1=r[`$-1_cmd 1]; "J"$cmd 2;1];
-        '"unknown instruction ",cmd[0]
-        ];
-    ];
-    r`b}
+//see day23.q
 //22
 {inp:" "vs/:"\n"vs x;
     bhp:"J"$inp[0;2];
@@ -242,8 +199,7 @@
 {c:desc"J"$"\n"vs x;count{[v;c]$[0=v;:enlist();0=count c;();[rv:c rc:til count c;raze rv,/:'.z.s'[v-rv;(1+rc)_\:c]]]}[150;c]}
 {c:desc"J"$"\n"vs x;count where {x=min x}count each{[v;c]$[0=v;:enlist();0=count c;();[rv:c rc:til count c;raze rv,/:'.z.s'[v-rv;(1+rc)_\:c]]]}[150;c]}
 //16
-{t:uj/[{d:2_" "vs x;d2:0N 2#d;enlist(`$-1_/:d2[;0])!"J"$(d2[;1]except\:",")}each"\n"vs x];exec first i+1 from t where children in 0N 3,cats in 0N 7,samoyeds in 0N 2,pomeranians in 0N 3,akitas in 0N 0,vizslas in 0N 0,goldfish in 0N 5,trees in 0N 3,cars in 0N 2,perfumes in 0N 1}
-{t:uj/[{d:2_" "vs x;d2:0N 2#d;enlist(`$-1_/:d2[;0])!"J"$(d2[;1]except\:",")}each"\n"vs x];exec first i+1 from t where children in 0N 3,(cats=0N) or cats>7,samoyeds in 0N 2,(pomeranians=0N)or pomeranians<3,akitas in 0N 0,vizslas in 0N 0,(goldfish=0N)or goldfish<5,(trees=0N)or trees>3,cars in 0N 2,perfumes in 0N 1}
+//see day16.q
 //15
 {d:"J"$(" "vs/:"\n"vs x)[;2 4 6 8]except\:\:",";c:{$[y=1;enlist enlist x;raze(til 1+x),/:'.z.s[;y-1]each x-til 1+x]}[100;count d];max prd each 0|sum each c*\:d}
 {d:"J"$(" "vs/:"\n"vs x)[;2 4 6 8 10]except\:\:",";c:{$[y=1;enlist enlist x;raze(til 1+x),/:'.z.s[;y-1]each x-til 1+x]}[100;count d];c2:{x where 500=last each x}sum each c*\:d;max prd each 0|4#/:c2}

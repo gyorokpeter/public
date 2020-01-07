@@ -1,3 +1,4 @@
+/
 x:read0`:d:/projects/github/public/aoc2018/d19.in;
 
 //WTF these are still not built in in 2018?!
@@ -38,3 +39,35 @@ d19p2:{d19common[1,5#0;x]};
 
 d19p1 x
 d19p2 x
+\
+
+{
+    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+    if[not `chronal in key`;
+        system"l ",path,"/chronal.q";
+    ];
+    }[];
+
+d19:{[a;x]
+    st:.chronal.runD[.chronal.editRegister[.chronal.new[x];0;a];1b;enlist 1;0b];
+    {sum x where 0=last[x] mod x}1+til max .chronal.getRegisters[st]};
+
+d19p1:{d19[0;x]};
+d19p2:{d19[1;x]};
+
+/d19p1"#ip 2\naddi 2 16 2\nseti 1 0 4\nseti 1 5 5\nmulr 4 5 1\neqrr 1 3 1\naddr 1 2 2\naddi 2 1 2\naddr 4 0 0\naddi 5 1 5\ngtrr 5 3 1\naddr 2 1 2\nseti 2 6 2\naddi 4 1 4\ngtrr 4 3 1\naddr 1 2 2\nseti 1 7 2\nmulr 2 2 2\naddi 3 2 3\nmulr 3 3 3\nmulr 2 3 3\nmuli 3 11 3\naddi 1 6 1\nmulr 1 2 1\naddi 1 6 1\naddr 3 1 3\naddr 2 0 2\nseti 0 3 2\nsetr 2 3 1\nmulr 1 2 1\naddr 2 1 1\nmulr 2 1 1\nmuli 1 14 1\nmulr 1 2 1\naddr 3 1 3\nseti 0 9 0\nseti 0 5 2"
+/d19p2"#ip 2\naddi 2 16 2\nseti 1 0 4\nseti 1 5 5\nmulr 4 5 1\neqrr 1 3 1\naddr 1 2 2\naddi 2 1 2\naddr 4 0 0\naddi 5 1 5\ngtrr 5 3 1\naddr 2 1 2\nseti 2 6 2\naddi 4 1 4\ngtrr 4 3 1\naddr 1 2 2\nseti 1 7 2\nmulr 2 2 2\naddi 3 2 3\nmulr 3 3 3\nmulr 2 3 3\nmuli 3 11 3\naddi 1 6 1\nmulr 1 2 1\naddi 1 6 1\naddr 3 1 3\naddr 2 0 2\nseti 0 3 2\nsetr 2 3 1\nmulr 1 2 1\naddr 2 1 1\nmulr 2 1 1\nmuli 1 14 1\nmulr 1 2 1\naddr 3 1 3\nseti 0 9 0\nseti 0 5 2"
+
+/
+OVERVIEW:
+This requires a cheat during the VM simulation. The given program sets up a value
+in a register and then finds the sum of its divisors using an inefficient algorithm.
+We can use the more efficient vector operations to speed up the process, which is
+very important to finish part 2 quickly.
+I simply assumed that whatever the biggest number in the registers is after reaching
+the instrucion at ip=1 is the number whose divisors we are summing, which worked out
+well.
+After migration to genarch, the cheat can no longer be inside the VM logic,
+however we can simply use the debugger API to set a breakpoint on line 1 and extract
+the registers to pick up from there.
+

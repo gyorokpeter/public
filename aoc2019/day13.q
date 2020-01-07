@@ -1,21 +1,22 @@
-{
-    path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
-    system"l ",path,"/intcode.q";
-    }[];
+{if[not `intcode in key `;
+        path:"/"sv -1_"/"vs ssr[;"\\";"/"]first -3#value .z.s;
+        system"l ",path,"/intcode.q";
+    ]}[];
 
-d13p1:{a:"J"$","vs x;
-    out:intcode[a;()];
+d13p1:{
+    out:.intcode.getOutput .intcode.run .intcode.new x;
     paint:3 cut out;
     sum 2=last each paint};
 
 d13p2:{
-    a:"J"$","vs x; a[0]:2; score:0; grid:(::);
+    a:.intcode.editMemory[.intcode.new x;0;2]; score:0; grid:(::);
     run:1b; input:();
     allInputs:();
     while[run;
         allInputs,:input;
-        a:intcode[a;input];
-        paint:3 cut $[run:first[a]~`pause;last a;a];
+        a:.intcode.runI[a;input];
+        run:not .intcode.isTerminated a;
+        paint:3 cut .intcode.getOutput a;
         if[grid~(::); grid:(1+max[paint]1 0)#0];
         grid:{x[y[1];y[0]]:y[2];x}/[grid;paint where -1<first each paint];
         score:max score,last last paint where -1=first each paint;
@@ -24,7 +25,6 @@ d13p2:{
         paddlePos:first raze til[count grid],/:'where each grid=3;
         input:enlist signum last ballPos[1]-paddlePos[1];
    ];
-   .d.input:allInputs;
    score};
 
 d13p1whitebox:{
