@@ -10,7 +10,7 @@ xe:{[a;b]
         rst0:rst1;rst1:rst2;
     ];
     rst0};
-//linear congruence
+//linear congruence - this does NOT work for large numbers, check 2020d13 instead
 lc:{[eq1;eq2]
     m:xe[eq1 0;eq2 0];
     (eq1[0]*eq2[0];((eq1[1]*m[2]*eq2[0])+(eq2[1]*m[1]*eq1[0]))mod eq1[0]*eq2[0])};
