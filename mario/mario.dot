@@ -1,0 +1,51 @@
+digraph {
+    subgraph cluster_2d {
+        label="2D";
+        smb [label="Super Mario Bros."]
+        smb2usa [label="Super Mario Bros. 2 (USA)"]
+        smb2 [label="Super Mario Bros.: The Lost Levels"]
+        smb3 [label="Super Mario Bros. 3"]
+        smw [label="Super Mario World"]
+        sml [label="Super Mario Land"]
+        sml2 [label="Super Mario Land 2: 6 Golden Coins"]
+        nsmb [label="New Super Mario Bros."]
+        nsmbwii [label="New Super Mario Bros. Wii"]
+        nsmb2 [label="New Super Mario Bros. 2"]
+        nsmbu [label="New Super Mario Bros. U\n+ New Super Luigi U"]
+    }
+    subgraph cluster_openworld {
+        label="Open-world 3D";
+        sm64 [label="Super Mario 64"]
+        sunshine [label="Super Mario Sunshine"]
+        galaxy [label="Super Mario Galaxy"]
+        galaxy2 [label="Super Mario Galaxy 2"]
+        odd [label="Super Mario Odyssey"]
+        fury [label="Bowser's Fury"]
+    }
+    subgraph cluster_lin3d {
+        label="Linear 3D";
+        sm3dl [label="Super Mario 3D Land"]
+        sm3dw [label="Super Mario 3D World"]
+    }
+    smb -> smb2
+    smb -> sml
+    smb -> smb2usa
+    smb2 -> smb3
+    smb3 -> smw
+    sml -> sml2
+    smw -> sml2
+    smw -> sm64
+    sm64 -> sunshine
+    sunshine -> galaxy
+    galaxy -> galaxy2
+    galaxy2 -> odd
+    odd -> fury
+    smw -> nsmb
+    nsmb -> nsmbwii
+    nsmb -> nsmb2
+    nsmbwii -> nsmbu
+    galaxy -> sm3dl
+    nsmb -> sm3dl
+    sm3dl -> sm3dw
+    sm3dw -> fury
+}

@@ -1,5 +1,5 @@
 # public
-This repo contains the solutions to Advent of Code in Q.
+Welcome to my public repo. This repo contains things such as solutions to Advent of Code challenges and other programming puzzles in Q, as well as other small side projects.
 
 # What is Q?
 
