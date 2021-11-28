@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>kɔ̃</title>
+    <script>
+
+var synonyms={
+    "kin": "a",
+    "ali": "ale",
+    "oko": "lukin",
+    "namako": "sin"
+};
+
+var dictionary=[
+    ["a", "m", "m", "i", "i"],
+    ["akesi", "pʷ", "pw", "ɛ̤ː", "ɛ̤ɛ̤"],
+    ["ala", "ŋ", "ŋ", "eː", "ee"],
+    ["alasa", "ɹ", "ɹ", "ḭ̃", "ḭ̃"],
+    ["ale", "ɾ", "r", "ɔː", "ɔɔ"],
+    ["anpa", "ʈʂ", "ʈʂ", "ʏ", "ʏ"],
+    ["ante", "ɡʷ", "gw", "ɤ", "ɤ"],
+    ["anu", "ts'", "ts'", "ḭ", "ḭ"],
+    ["awen", "ð", "ð", "yː", "yy"],
+    ["e", "p", "p", "o", "o"],
+    ["en", "ɲ", "ɲ", "ã", "ã"],
+    ["esun", "ᵑk", "ŋk", "ɛ̰", "ɛ̰"],
+    ["ijo", "ʒ", "ʒ", "ɪ̃", "ɪ̃"],
+    ["ike", "ts", "ts", "ɔ̃", "ɔ̃"],
+    ["ilo", "ɟʝ", "ɟh", "ui", "ui"],
+    ["insa", "tʲ", "tj", "ou", "ou"],
+    ["jaki", "sː", "ss", "ɤː", "ɤɤ"],
+    ["jan", "s", "s", "ɔ", "ɔ"],
+    ["jelo", "tː", "tt", "uo", "uo"],
+    ["jo", "pʰ", "ph", "ʌ", "ʌ"],
+    ["kala", "mʲ", "mj", "ɯ̤", "ɯ̤"],
+    ["kalama", "ᵐb", "mb", "ũː", "ũũ"],
+    ["kama", "f", "f", "ũ", "ũ"],
+    ["kasi", "hʷ", "hw", "ʌː", "ʌʌ"],
+    ["ken", "v", "v", "ɛ̃", "ɛ̃"],
+    ["kepeken", "p'", "p'", "ɘ", "ɘ"],
+    ["kili", "ç", "ç", "ia", "ia"],
+    ["kiwen", "ᵑɡ", "ŋg", "ɪː", "ɪɪ"],
+    ["ko", "ɥ", "ɥ", "ɨi", "ɨi"],
+    ["kon", "mː", "mm", "o̰", "o̰"],
+    ["kule", "qʷ", "qw", "ɯa", "ɯa"],
+    ["kulupu", "ɬ", "lh", "ɜ", "ɜ"],
+    ["kute", "tsʰ", "tsh", "o̤", "o̤"],
+    ["la", "t", "t", "iː", "ii"],
+    ["lape", "ʈʰ", "ʈh", "ḛ", "ḛ"],
+    ["laso", "q'", "q'", "ṳ", "ṳ"],
+    ["lawa", "ɣ", "ɣ", "ʊ̃", "ʊ̃"],
+    ["len", "kʷ'", "kw'", "ʉː", "ʉʉ"],
+    ["lete", "fʷ", "fw", "əu", "əu"],
+    ["li", "j", "j", "u", "u"],
+    ["lili", "tʰ", "th", "ãː", "ãã"],
+    ["linja", "cçʰ", "çh", "ɤ̃", "ɤ̃"],
+    ["lipu", "ʁ", "rh", "a̤", "a̤"],
+    ["loje", "bʷ", "bw", "ɛ̤", "ɛ̤"],
+    ["lon", "dʒ", "dʒ", "ɛː", "ɛɛ"],
+    ["luka", "kp", "kp", "ɑ", "ɑ"],
+    ["lukin", "kʷ", "kw", "əː", "əə"],
+    ["lupa", "ⁿdʒ", "ndʒ", "æ̃", "æ̃"],
+    ["ma", "ɡb", "gb", "ɨ̃", "ɨ̃"],
+    ["mama", "nː", "nn", "e̤", "e̤"],
+    ["mani", "ɡː", "gg", "i̤ː", "i̤i̤"],
+    ["meli", "ɖ", "ɖ", "œ", "œ"],
+    ["mi", "n", "n", "ɛ", "ɛ"],
+    ["mije", "ʎ", "ʎ", "a̰", "a̰"],
+    ["moku", "kʰ", "kh", "ɯ", "ɯ"],
+    ["moli", "ɳ", "ɳ", "ɔ̃ː", "ɔ̃ɔ̃"],
+    ["monsi", "pʲ", "pj", "æ̃ː", "æ̃æ̃"],
+    ["mu", "ʝ", "jh", "ɨ̃ː", "ɨ̃ɨ̃"],
+    ["mun", "dʲ", "dj", "ea", "ea"],
+    ["musi", "ᵑᵐɡb", "ŋmgb", "ua", "ua"],
+    ["mute", "ʔ", "ʔ", "ɪ", "ɪ"],
+    ["nanpa", "χ", "xh", "ẽː", "ẽẽ"],
+    ["nasa", "q", "q", "ʉ", "ʉ"],
+    ["nasin", "cç", "cç", "ɯː", "ɯɯ"],
+    ["nena", "ʄ", "ʄ", "ã̰", "ã̰"],
+    ["ni", "b", "b", "aː", "aa"],
+    ["nimi", "dz", "dz", "ø", "ø"],
+    ["noka", "ⁿz", "nz", "ɐː", "ɐɐ"],
+    ["o", "z", "z", "ẽ", "ẽ"],
+    ["olin", "ŋʷ", "ŋw", "ɑ̃", "ɑ̃"],
+    ["ona", "h", "h", "ə", "ə"],
+    ["open", "ɭ", "ɭ", "øː", "øø"],
+    ["pakala", "ɡʲ", "gj", "ɔ̤", "ɔ̤"],
+    ["pali", "c", "c", "y", "y"],
+    ["palisa", "lː", "ll", "uə", "uə"],
+    ["pan", "d̤", "dh", "u̥", "u̥"],
+    ["pana", "k'", "k'", "ɑː", "ɑɑ"],
+    ["pi", "ɡ", "g", "oː", "oo"],
+    ["pilin", "t'", "t'", "ɐ", "ɐ"],
+    ["pimeja", "kː", "kk", "ʌ̃", "ʌ̃"],
+    ["pini", "ŋm", "ŋm", "ə̃ː", "ə̃ə̃"],
+    ["pipi", "ɮ", "ɮ", "ɯə", "ɯə"],
+    ["poka", "ʕ", "ʕ", "ṳː", "ṳṳ"],
+    ["poki", "ᶬv", "mv", "ɒ̃", "ɒ̃"],
+    ["pona", "w", "w", "e", "e"],
+    ["pu", "ʐ", "zh", "i̥", "i̥"],
+    ["sama", "ɸ", "ɸ", "ɒ", "ɒ"],
+    ["seli", "ɡʰ", "gh", "əi", "əi"],
+    ["selo", "qʰ", "qh", "ɔ̰", "ɔ̰"],
+    ["seme", "ⁿd", "nd", "ə̃", "ə̃"],
+    ["sewi", "xʷ", "xw", "i̤", "i̤"],
+    ["sijelo", "mʷ", "mw", "ɵ", "ɵ"],
+    ["sike", "cʰ", "ch", "iə", "iə"],
+    ["sin", "ʈ", "ʈ", "au", "au"],
+    ["sina", "d", "d", "ĩ", "ĩ"],
+    ["sinpin", "bː", "bb", "ɒː", "ɒɒ"],
+    ["sitelen", "ɽ", "ɽ", "ɛ̃ː", "ɛ̃ɛ̃"],
+    ["sona", "tʃ", "tʃ", "ɨ", "ɨ"],
+    ["soweli", "θ", "θ", "oi", "oi"],
+    ["suli", "x", "x", "æ", "æ"],
+    ["suno", "ʂ", "ʂ", "ɯ̃", "ɯ̃"],
+    ["supa", "jː", "jj", "a̤ː", "a̤a̤"],
+    ["suwi", "χʷ", "xhw", "ɔ̤ː", "ɔ̤ɔ̤"],
+    ["tan", "tʃʰ", "tʃh", "õː", "õõ"],
+    ["taso", "tʃ'", "tʃ'", "æː", "ææ"],
+    ["tawa", "l", "l", "uː", "uu"],
+    ["telo", "ɗ", "ɗ", "ai", "ai"],
+    ["tenpo", "ʃ", "ʃ", "ʊ", "ʊ"],
+    ["toki", "k", "k", "a", "a"],
+    ["tomo", "ɟ", "ɟ", "ĩː", "ĩĩ"],
+    ["tu", "β", "β", "ɨː", "ɨɨ"],
+    ["unpa", "kʲ", "kj", "ei", "ei"],
+    ["uta", "pː", "pp", "iu", "iu"],
+    ["utala", "ɦ", "ɦ", "ṵ", "ṵ"],
+    ["walo", "ᵑɡʷ", "ŋgw", "ɔi", "ɔi"],
+    ["wan", "ɓ", "ɓ", "ʊː", "ʊʊ"],
+    ["waso", "b̤", "bh", "ɑ̃ː", "ɑ̃ɑ̃"],
+    ["wawa", "ħ", "hh", "ie", "ie"],
+    ["weka", "ⁿdz", "ndz", "œː", "œœ"],
+    ["wile", "r", "rr", "õ", "õ"]
+];
+
+function decode(str) {
+    var out = "";
+    var needSpace = false;
+    while (0<str.length) {
+        if (str[0]=='<') {
+            needSpace = false;
+            var escapes = str.match('^<[^>]*>');
+            if(escapes) {
+                var escape = escapes[0];
+                out+=escape.substr(1,escape.length-2);
+                str = str.substr(escape.length);
+            } else {
+                out+=str[0];
+                str = str.substr(1);
+            }
+        } else {
+            var prefix = "";
+            var ind = -1;
+            for (var i=0; i<dictionary.length; ++i) {
+                for (var j=0; j<4; ++j) {
+                    if (str.startsWith(dictionary[i][j+1])) {
+                        if (prefix.length < dictionary[i][j+1].length) {
+                            prefix = dictionary[i][j+1];
+                            ind = i;
+                        }
+                    }
+                }
+            }
+            if (ind>-1) {
+                if (needSpace) out+=" ";
+                out+=dictionary[ind][0];
+                str = str.substr(prefix.length);
+                needSpace = true;
+            } else {
+                c = str[0];
+                out+=c;
+                needSpace = c=='.'||c==','||c=='?'||c=='!';
+                str = str.substr(1);
+            }
+        }
+    }
+    return out;
+}
+
+function encode(str, print) {
+    var out = "";
+    var mode = 0;
+    var pm = print ? 1 : 0;
+    while (0<str.length) {
+        matches = str.match("^[a-zA-Z]+");
+        if (matches) {
+            var match = matches[0];
+            var word = match;
+            if (synonyms[word]) word = synonyms[word];
+            var found = false;
+            for (var i=0; i<dictionary.length; ++i) {
+                if (dictionary[i][0] == word) {
+                    out += dictionary[i][1+2*mode+print];
+                    mode = 1-mode;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) out += "<"+word+">";
+            str = str.substr(match.length);
+        } else {
+            if (str[0] != ' ')
+                out += str[0];
+            str = str.substr(1);
+        }
+    }
+    return out;
+}
+
+function tr1() {
+    document.getElementById("korn").value = encode(document.getElementById("tokipona").value, false);
+}
+
+function tr2() {
+    document.getElementById("korn").value = encode(document.getElementById("tokipona").value, true);
+}
+
+function tr3() {
+    document.getElementById("tokipona").value = decode(document.getElementById("korn").value);
+}
+
+    </script>
+  </head>
+  <body>
+    <table>
+        <tr>
+            <td>toki pona<br><textarea id="tokipona" cols="80" rows="30"></textarea></td>
+            <td>
+                <input type="button" value="&gt;&gt;1" onclick="tr1()"><br>
+                <input type="button" value="&gt;&gt;2" onclick="tr2()"><br>
+                <input type="button" value="&lt;&lt;" onclick="tr3()"><br>
+            </td>
+            <td>kɔ̃<br><textarea id="korn" cols="80" rows="30"></textarea></td>
+        <tr>
+    </table>
+    This is a translator for jan Misali's conlang "kɔ̃".<br>
+    There is no explanation why there are two consonant columns and two vowel columns<br>
+    so I just made two conversion buttons, one for each column.<br>
+    The conversion back to Toki Pona is unambiguous.<br>
+    There is no provision for how to incorporate new words into the language.<br>
+    So the translator will leave these alone and mark them with escape marks to allow<br>
+    the reverse translator to unescape them instead of trying to interpret its characters as words.<br>
+    There is also no explanation on how spaces should be handled.<br>
+    So some text may not round-trip with regards to content that is not just a series of<br>
+    valid Toki Pona words (e.g. punctuation and whitespace).<br>
+    Info:
+    <ul>
+        <li><a href="https://www.tumblr.com/tagged/k%C9%94%CC%83?sort=top">description of the language</a></li>
+        <li><a href="https://docs.google.com/spreadsheets/d/1CyTmo3PWjLTSOGGzc6NKt93iF_RK2eQSfBNsEFysYg0/edit#gid=0">dictionary</a></li>
+    </ul>
+  </body>
+</html>
