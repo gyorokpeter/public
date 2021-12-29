@@ -161,7 +161,7 @@
             ;""]
         ,$[not (::)~stack;"ST=",(" "sv string[stack]),"<br>";""]
         ,$[0<count mem;.genarch.showMemory[mem],"<br>";""]
-        ,"<br>",.h.htc[`form;"Lineage: ",.h.htac[`input;enlist[`name]!enlist"lineage";""],.h.htac[`input;enlist[`type]!enlist"submit";""]]
+        ,"<br>mem address or r.&lt;regname&gt;<br>",.h.htc[`form;"Lineage: ",.h.htac[`input;enlist[`name]!enlist"lineage";""],.h.htac[`input;enlist[`type]!enlist"submit";""]]
         ,.h.htc[`form;"History: ",.h.htac[`input;enlist[`name]!enlist"hist";""],.h.htac[`input;enlist[`type]!enlist"submit";""]]
         ,$[not (::)~output;.h.htc[`form;.h.htac[`input;`name`type`value!("histOut";"hidden";enlist"1");""],.h.htac[`input;`type`value!("submit";"output history");""]];""]
         ,.h.htc[`pre;lineageDisp]
