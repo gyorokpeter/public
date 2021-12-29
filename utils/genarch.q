@@ -14,8 +14,8 @@
     (` sv fullNs,`needsInput) set {[st]0b};
     (` sv fullNs,`getRegisters) set {[st]()};
     (` sv fullNs,`getImmediate) set {[st;ip;ind]'"unsupported"};
-    (` sv fullNs,`getStackPointer) set {[st]return 0N};
-    (` sv fullNs,`getInput) set {[st]return(::)};
+    (` sv fullNs,`getStackPointer) set {[st]0N};
+    (` sv fullNs,`getInput) set {[st](::)};
     (` sv fullNs,`addInput) set {[st;input]'"unsupported"};
     (` sv fullNs,`getOutput) set {[st](::)};
     (` sv fullNs,`clearOutput) set {[st]'"unsupported"};
