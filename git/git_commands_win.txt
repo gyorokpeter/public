@@ -1,0 +1,20 @@
+git config --global core.editor "D:\Program Files\Notepad++\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+
+:: gb.cmd
+git branch -v
+:: gca.cmd
+git commit --amend
+:: gl.cmd
+git log --all --oneline --graph --decorate
+:: gnb.cmd
+git checkout -b %1
+:: gp.cmd
+FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --abbrev-ref HEAD`) DO (
+SET var=%%F
+)
+git push origin %var%
+:: gpf.cmd
+FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --abbrev-ref HEAD`) DO (
+SET var=%%F
+)
+git push origin %var% --force-with-lease
