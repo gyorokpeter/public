@@ -6,3 +6,4 @@ alias gl="git log --all --oneline --graph --decorate"
 function gnb { if [[ -z $1 ]]; echo need arg; return 1; fi; git checkout -b "$1"; }
 function gp { h=`git rev-parse --abbrev-ref HEAD`; if [[ -z $h ]]; then echo failed to find current branch; return 1; fi; git push origin "$h"; }
 function gpf { h=`git rev-parse --abbrev-ref HEAD`; if [[ -z $h ]]; then echo failed to find current branch; return 1; fi; git push origin "$h" --force-with-lease; }
+function gsq { read -p "Change the second pick to squash." -N 1 -t 1; git rebase -i HEAD~2; }
