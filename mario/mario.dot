@@ -12,18 +12,19 @@ digraph {
         nsmbwii [label="New Super Mario Bros. Wii"]
         nsmb2 [label="New Super Mario Bros. 2"]
         nsmbu [label="New Super Mario Bros. U\n+ New Super Luigi U"]
+        wonder [label="Super Mario Bros. Wonder"]
     }
     subgraph cluster_openworld {
         label="Open-world 3D";
         sm64 [label="Super Mario 64"]
         sunshine [label="Super Mario Sunshine"]
-        galaxy [label="Super Mario Galaxy"]
-        galaxy2 [label="Super Mario Galaxy 2"]
         odd [label="Super Mario Odyssey"]
         fury [label="Bowser's Fury"]
     }
     subgraph cluster_lin3d {
         label="Linear 3D";
+        galaxy [label="Super Mario Galaxy"]
+        galaxy2 [label="Super Mario Galaxy 2"]
         sm3dl [label="Super Mario 3D Land"]
         sm3dw [label="Super Mario 3D World"]
     }
@@ -44,6 +45,7 @@ digraph {
     nsmb -> nsmbwii
     nsmb -> nsmb2
     nsmbwii -> nsmbu
+    nsmbu -> wonder
     galaxy -> sm3dl
     nsmb -> sm3dl
     sm3dl -> sm3dw
