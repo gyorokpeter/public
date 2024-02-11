@@ -1,5 +1,5 @@
 # public
-Welcome to my public repo. This repo contains various side projects and articles. ***Advent of Code and other puzzle solutions are being moved to a separate repo: [https://github.com/gyorokpeter/puzzle_solutions/]***.
+Welcome to my public repo. This repo contains various side projects and articles. ***Advent of Code and other puzzle solutions are being moved to a separate repo: https://github.com/gyorokpeter/puzzle_solutions/***.
 
 # What is Q?
 
