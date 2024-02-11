@@ -1,5 +1,5 @@
 # public
-Welcome to my public repo. This repo contains things such as solutions to Advent of Code challenges and other programming puzzles in Q, as well as other small side projects.
+Welcome to my public repo. This repo contains various side projects and articles. ***Advent of Code and other puzzle solutions are being moved to a separate repo: [https://github.com/gyorokpeter/puzzle_solutions/]***.
 
 # What is Q?
 
