@@ -1,4 +1,5 @@
-.imm.gems:1!update reso:?[1<count each reso;`$"|"vs/:reso;count[i]#enlist`$()] from("SJ*J*BS*";enlist",")0:`$":",.imm.dataPath,"/gems.csv";
+.imm.reloadGems:{.imm.gems:1!update reso:?[1<count each reso;`$"|"vs/:reso;count[i]#enlist`$()] from("SJ*J*BS*";enlist",")0:`$":",.imm.dataPath,"/gems.csv"};
+.imm.reloadGems[];
 
 .imm.resoStars:1 2 5!(1 1;1 2 2;2 2 2 5 5);
 .imm.resoRanks:1 2 5!(4 8;4 6 8;4 5 6 7 8);
@@ -81,4 +82,4 @@
 //gem:`los
 //.imm.saveGemPage`night
 //.imm.genWikiForGem`los
-//.imm.saveGemPages[]
+//.imm.reloadGems[];.imm.saveGemPages[]
