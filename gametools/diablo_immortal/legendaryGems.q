@@ -23,8 +23,14 @@
 .imm.resoSetBonus[(2;`att);`text]:"*10: Primary Attack damage increased by 3%\n*30: Skill damage increased by 2%\n*50: Damage done increased by 1% per party member";
 .imm.resoSetBonus[(2;`def);`text]:"*10: Damage taken while moving decreased by 3%\n*30: Damage taken while suffering loss of control decreased by 4%"
     ,"\n*50: Block Chance increased by 2%";
+.imm.resoSetBonus[(2;`def2);`text]:"*10: Damage taken while suffering loss of control decreased by 4%\n*30: Damage done to enemies suffering loss of control increased by 5%"
+    ,"\n*50: Block Chance increased by 2%";
+.imm.resoSetBonus[(2;`sneak);`text]:"*10: Damage done to shielded enemies increased by 4%\n*30: Damage to full Life enemies increased by 5%"
+    ,"\n*50: Damage increased 4% to enemies below 30% Life";
 .imm.resoSetBonus[(5;`att);`text]:"*20: Primary Attack damage increased by 3%\n*40: Skill damage increased by 2%\n*60: Damage done increased by 1% per party member"
     ,"\n*160: Damage to full Life enemies increased by 5%\n*260: Damage increased 4% to enemies below 30% Life";
+.imm.resoSetBonus[(5;`def);`text]:"*20: Damage taken while moving decreased by 3%\n*40: Damage taken while suffering loss of control decreased by 4%"
+    ,"\n*60: Block Chance increased by 2%\n*160: Damage taken by your summons decreased by 4%\n*260: Damage done by your summons increased by 4%";
 
 .imm.or:{[opts]
     if[1=count opts;:first opts];

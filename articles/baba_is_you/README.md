@@ -228,7 +228,7 @@ GROUP WITHOUT BURGER IS <NUDGE
 This makes the enemies move in the current direction. Initially only the WITHOUT BOOK rule is active, and this flips whenever POWER is triggered.
 
 ```
-SEED IS SHUT
+SEED IS SHUT AND DOWN
 ```
 
 The enemy projectile faces down so that's the direction it travels. It is also SHUT for the purpose of killing you.
@@ -242,7 +242,6 @@ SELDOM is a unique property that only appears in this level and acts as a random
 ```
 SEED IS AUTO
 BOLT IS AUTO
-SEED IS DOWN
 ```
 
 Projectiles move automatically.
