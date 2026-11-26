@@ -4,7 +4,8 @@ Food Hall of Fame
 * **Czechia**: [Fidorka](https://www.google.com/search?q=fidorka&tbm=isch)
 * **Austria**: [Dragee Keksi](https://www.google.com/search?q=dragee+keksi&tbm=isch)
 * **Italy**: [Baci](https://www.google.com/search?q=baci+pralines&tbm=isch), [Tronky](https://www.google.com/search?q=tronky&tbm=isch)
-* **Spain**: chocolate covered churros at [Forns del Pi](https://www.google.com/maps/@41.380801,2.1747888,3a,75y,159.72h,76.23t/data=!3m7!1e1!3m5!1sfhmpI6m0qeAQi45ncPkj0w!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DfhmpI6m0qeAQi45ncPkj0w%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D163.05927%26pitch%3D0%26thumbfov%3D100!7i16384!8i8192)
+* **Spain**: chocolate covered churros at [Forns del Pi](https://www.google.com/maps/@41.380801,2.1747888,3a,75y,159.72h,76.23t/data=!3m7!1e1!3m5!1sfhmpI6m0qeAQi45ncPkj0w!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DfhmpI6m0qeAQi45ncPkj0w%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D163.05927%26pitch%3D0%26thumbfov%3D100!7i16384!8i8192),
+[turrón](https://en.wikipedia.org/wiki/Turr%C3%B3n), [polvorón](https://en.wikipedia.org/wiki/Polvor%C3%B3n)
 * **France**: almond-filled croissant
 * **Denmark**: [Mazarintærte](https://www.google.com/search?q=mazarint%C3%A6rte&tbm=isch) (the large one sold in shops)
 * **Norway / Sweden**: [Smash!](https://www.google.com/search?q=nidar+smash&tbm=isch)
